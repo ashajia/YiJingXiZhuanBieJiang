@@ -45,7 +45,7 @@ def format_content(content_p_list, content_span_list):
 			else:
 				f_span = '``{}``'.format(span.text)
 				content_p_string = re.sub(r'“'+span.text+'”', '“'+f_span+'”',content_p_string)
-		content_text.append('&emsp;' + content_p_string + '\n---\n')
+		content_text.append('&emsp;' + content_p_string + '\n___\n')
 		content_text_list.append(content_text)
 	return content_text_list
 
@@ -54,6 +54,7 @@ def create_md(file_name, content_list):
 		for c_list in content_list:
 			for c in c_list:
 				f.write(c)
+		f.write('[返回目录](../../master/README.md#目录)')
 		print('  - Create {} Success'.format(file_name))
 
 if __name__ == '__main__':

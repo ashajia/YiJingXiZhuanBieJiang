@@ -3,7 +3,7 @@ import book_change as bc
 import content as ct
 import os
 
-root_path = '..'
+root_path = '.'
 index_url = 'http://www.quanxue.cn/CT_NanHuaiJin/YiJingIndex.html'
 base_url = 'http://www.quanxue.cn/CT_NanHuaiJin'
 headers = {
