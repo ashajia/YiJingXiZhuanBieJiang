@@ -37,7 +37,7 @@ def format_content(content_p_list, content_span_list):
 			if span.text is None:
 				if span.find('img') is not None:
 					img_url = base_url + span.find('img').attrib['src']
-					md_img = '![bagua](http://cors.zme.ink/{})'.format(img_url)
+					md_img = '![bagua](https://cors.zme.ink/{})'.format(img_url)
 					content_p_string = content_p_string.replace('“”','“'+md_img+'”')
 				elif span.find('big') is not None:
 					big_text = span.find('big').text
