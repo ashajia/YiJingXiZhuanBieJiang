@@ -50,7 +50,10 @@ def format_content(content_p_list, content_yinyong_list, content_span_list):
 			else:
 				f_span = '``{}``'.format(span.text)
 				content_p_string = re.sub(r'“'+span.text+'”', '“'+f_span+'”',content_p_string)
-		content_text.append('&emsp;' + content_p_string + '\n___\n')
+		if re.match(r'^>', content_p_string):
+			content_text.append(content_p_string + '\n___\n')
+		else:
+			content_text.append('&emsp;' + content_p_string + '\n___\n')
 		content_text_list.append(content_text)
 	return content_text_list
 
