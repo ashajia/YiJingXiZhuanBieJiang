@@ -62,7 +62,7 @@ def create_md(file_name, content_list):
 		for c_list in content_list:
 			for c in c_list:
 				f.write(c)
-		f.write('[返回目录](../../master/README.md#目录)')
+		f.write('[返回目录](../../../master/README.md#目录)')
 		print('  - Create {} Success'.format(file_name))
 
 if __name__ == '__main__':
