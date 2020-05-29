@@ -21,20 +21,24 @@ def get_content_text(text):
 	# 返回p标签内容 和span标签内容
 	html = etree.HTML(text, etree.HTMLParser())
 #	content_p = html.xpath('//p or //div[@class="jingwen"]')
-	content_p_list = html.xpath('//p | //div[@class="jingwen"] | //div[@class="shici"]')
+	content_p_list = html.xpath('//p | //div[@class="jingwen"]')
 	content_yinyong_list = html.xpath('//div[@class="jingwen"]')
+	content_shici_list = html.xpath('//p[@class="shici"]')
 #	content_span = html.xpath('//span[@class="qiangdiao1"]')
 	content_span_list = html.xpath('//span[contains(@class,"qiangdiao")]')
 	new_content_span = []
-	return (content_p_list, content_yinyong_list, content_span_list)
+	return (content_p_list, content_yinyong_list,content_shici_list, content_span_list)
 
-def format_content(content_p_list, content_yinyong_list, content_span_list):
+def format_content(content_p_list, content_yinyong_list, content_shici_list, content_span_list):
 	# 返回p标签内容，其中span标签和引用(shici|jingwen)被替换为自定义内容
 	content_text_list = []
 	for content in content_p_list:
 		content_text = []
 		content_p_string = content.xpath('string(.)')
 		content_p_string = content_p_string.replace('\n','').replace('\r','')
+		for shici in content_shici_list:
+			f_shici = '> {}'.format(shici.text.strip())
+			content_p_string = re.sub(r''+shici.text.strip()+'', f_shici, content_p_string)
 		for yinyong in content_yinyong_list:
 			f_yinyong = '> {}'.format(yinyong.text.strip())
 			content_p_string = re.sub(r''+yinyong.text.strip()+'', f_yinyong, content_p_string)
